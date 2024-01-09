@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float _movementSpeed = 3f;
+    [SerializeField]
+    private Animator _animator;
 
     void Update()
     {
@@ -23,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 dir = GetDirection();
 
-        transform.position += dir * _movementSpeed * Time.deltaTime;
+        transform.position += dir.normalized * _movementSpeed * Time.deltaTime;
+        Debug.Log(dir.magnitude);
+        _animator.SetFloat("Speed", dir.magnitude);
     }
 }

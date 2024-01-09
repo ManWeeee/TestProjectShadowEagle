@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 713269991}
   - component: {fileID: 713269990}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: RestartBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,6 +625,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 47, y: 0, z: 0}
+--- !u!1 &1138077955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5016100408427286232, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+  m_PrefabInstance: {fileID: 1243299936542471087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1175216746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1023,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5115665549051153157, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+      propertyPath: _hp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115665549051153157, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+      propertyPath: _damage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115665549051153157, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+      propertyPath: _attackDelay
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115665549051153157, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+      propertyPath: _attackSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115665549051153157, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+      propertyPath: _animatorController
+      value: 
+      objectReference: {fileID: 1243299936542471091}
     - target: {fileID: 8342809897575316683, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1061,19 +1086,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5016100408427286232, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1243299936542471093}
   m_SourcePrefab: {fileID: 100100000, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
 --- !u!114 &1243299936542471090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5115665549051153157, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
   m_PrefabInstance: {fileID: 1243299936542471087}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1138077955}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d0d768a0d357334286e5a146ac21b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1243299936542471091 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2111518244622979505, guid: 98fa2bf115616174da3132f7a380aca3, type: 3}
+  m_PrefabInstance: {fileID: 1243299936542471087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1243299936542471093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138077955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1faf165271702f94baf37f7025c472b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 5
+  _animator: {fileID: 1243299936542471091}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

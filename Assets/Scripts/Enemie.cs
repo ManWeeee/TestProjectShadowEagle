@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class Enemie : MonoBehaviour
 {
-    public float Hp;
-    public float Damage;
-    public float AtackSpeed;
-    public float AttackRange = 2;
+    private float _hp;
+    private float _damage;
+    private float _attackSpeed;
+    private float _attackRange = 2;
 
 
     public Animator AnimatorController;
@@ -32,7 +32,7 @@ public class Enemie : MonoBehaviour
             return;
         }
 
-        if (Hp <= 0)
+        if (_hp <= 0)
         {
             Die();
             Agent.isStopped = true;
@@ -41,13 +41,13 @@ public class Enemie : MonoBehaviour
 
         var distance = Vector3.Distance(transform.position, SceneManager.Instance.Player.transform.position);
      
-        if (distance <= AttackRange)
+        if (distance <= _attackRange)
         {
             Agent.isStopped = true;
-            if (Time.time - lastAttackTime > AtackSpeed)
+            if (Time.time - lastAttackTime > _attackSpeed)
             {
                 lastAttackTime = Time.time;
-                SceneManager.Instance.Player.Hp -= Damage;
+                SceneManager.Instance.Player.TakeDamage(_damage);
                 AnimatorController.SetTrigger("Attack");
             }
         }
@@ -60,7 +60,17 @@ public class Enemie : MonoBehaviour
 
     }
 
+    public void TakeDamage(float damage)
+    {
+        _hp -= damage;
 
+        if (_hp <= 0)
+        {
+            Die();
+            return;
+        }
+
+    }
 
     private void Die()
     {
