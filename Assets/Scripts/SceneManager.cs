@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +15,10 @@ public class SceneManager : MonoBehaviour
     private int currWave = 0;
     [SerializeField] private LevelConfig Config;
 
+    public Action OnWaveCompleted;
+
+    public int CurrentWave { get => currWave; }
+    public LevelConfig LevelConfig { get { return Config; } }
     private void Awake()
     {
         Instance = this;
@@ -55,11 +59,11 @@ public class SceneManager : MonoBehaviour
         var wave = Config.Waves[currWave];
         foreach (var character in wave.Characters)
         {
-            Vector3 pos = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+            Vector3 pos = new Vector3(UnityEngine.Random.Range(-10, 10), 0, UnityEngine.Random.Range(-10, 10));
             Instantiate(character, pos, Quaternion.identity);
         }
         currWave++;
-
+        OnWaveCompleted?.Invoke();
     }
 
     public void Reset()

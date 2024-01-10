@@ -10,9 +10,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
+    private Player _player;
+
+    private void Start()
+    {
+        _player = GetComponent<Player>();
+    }
+
     void Update()
     {
-        Move();
+        if(!_player.IsDead)
+            Move();
     }
 
     private Vector3 GetDirection()
@@ -25,8 +33,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 dir = GetDirection();
 
-        transform.position += dir.normalized * _movementSpeed * Time.deltaTime;
-        Debug.Log(dir.magnitude);
+        if (dir != Vector3.zero)
+        {
+            Vector3 targetPosition = transform.position + (dir.normalized);
+            transform.rotation = Quaternion.LookRotation(targetPosition - transform.position  );
+            transform.position += dir.normalized * _movementSpeed * Time.deltaTime;
+        }
+
         _animator.SetFloat("Speed", dir.magnitude);
     }
 }

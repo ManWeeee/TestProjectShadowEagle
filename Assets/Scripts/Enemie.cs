@@ -5,9 +5,15 @@ using UnityEngine.AI;
 
 public class Enemie : MonoBehaviour
 {
+    [SerializeField]
+    private int _playerHealHpAmount;
+    [SerializeField]
     private float _hp;
+    [SerializeField]
     private float _damage;
+    [SerializeField]
     private float _attackSpeed;
+    [SerializeField]
     private float _attackRange = 2;
 
 
@@ -53,10 +59,10 @@ public class Enemie : MonoBehaviour
         }
         else
         {
+            Agent.isStopped = false;
             Agent.SetDestination(SceneManager.Instance.Player.transform.position);
         }
         AnimatorController.SetFloat("Speed", Agent.speed); 
-        Debug.Log(Agent.speed);
 
     }
 
@@ -67,6 +73,7 @@ public class Enemie : MonoBehaviour
         if (_hp <= 0)
         {
             Die();
+            SceneManager.Instance.Player.OnEnemyDied?.Invoke(_playerHealHpAmount);
             return;
         }
 

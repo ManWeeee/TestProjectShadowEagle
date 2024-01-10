@@ -7,8 +7,4 @@ using UnityEngine;
 public class LevelConfig : ScriptableObject
 {
     public Wave[] Waves;
-
 }
-
-
-
