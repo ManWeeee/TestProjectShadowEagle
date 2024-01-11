@@ -32,9 +32,7 @@ public class Player : MonoBehaviour
 
     private Enemie _closestEnemie;
 
-    public delegate void StatsDelegate(int healAmount);
-
-    public StatsDelegate OnEnemyDied;
+    public Action<int> OnEnemyDied;
 
     public float Hp { get => _hp; }
     public float Damage { get => _damage; }
@@ -58,7 +56,7 @@ public class Player : MonoBehaviour
             _timeFromLastHit = Time.time - _lastAttackTime;
             _closestEnemie = FindClosestEnemie();
             _isEnemyClose = IsEnemyReached(ClosestEnemie);
-            if (Input.GetMouseButtonDown(0) && _timeFromLastHit > _attackCooldown && _isEnemyClose)
+            if (Input.GetMouseButtonDown(0) && _timeFromLastHit > _attackCooldown)
             {
                 Attack(_closestEnemie);
             }
@@ -84,9 +82,12 @@ public class Player : MonoBehaviour
 
         if (enemie != null)
         {
-            transform.transform.rotation = Quaternion.LookRotation(enemie.transform.position - transform.position);
+            if (_isEnemyClose)
+            {
+                transform.transform.rotation = Quaternion.LookRotation(enemie.transform.position - transform.position);
 
-            enemie.TakeDamage(_damage);
+                enemie.TakeDamage(_damage);
+            }
         }
     }
 

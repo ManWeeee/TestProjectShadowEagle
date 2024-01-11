@@ -1,39 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Enemie : MonoBehaviour
+public class CommonEnemie : Enemie
 {
-    [SerializeField]
-    private int _playerHealHpAmount;
-    [SerializeField]
-    private float _hp;
-    [SerializeField]
-    private float _damage;
-    [SerializeField]
-    private float _attackSpeed;
-    [SerializeField]
-    private float _attackRange = 2;
-
-
-    public Animator AnimatorController;
-    public NavMeshAgent Agent;
-
-    private float lastAttackTime = 0;
-    private bool isDead = false;
-
-
     private void Start()
     {
         SceneManager.Instance.AddEnemie(this);
         Agent.SetDestination(SceneManager.Instance.Player.transform.position);
-
     }
 
     private void Update()
     {
-        if(isDead)
+        if (isDead)
         {
             return;
         }
@@ -46,7 +25,7 @@ public class Enemie : MonoBehaviour
         }
 
         var distance = Vector3.Distance(transform.position, SceneManager.Instance.Player.transform.position);
-     
+
         if (distance <= _attackRange)
         {
             Agent.isStopped = true;
@@ -62,11 +41,11 @@ public class Enemie : MonoBehaviour
             Agent.isStopped = false;
             Agent.SetDestination(SceneManager.Instance.Player.transform.position);
         }
-        AnimatorController.SetFloat("Speed", Agent.speed); 
+        AnimatorController.SetFloat("Speed", Agent.speed);
 
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         _hp -= damage;
 
@@ -76,14 +55,13 @@ public class Enemie : MonoBehaviour
             SceneManager.Instance.Player.OnEnemyDied?.Invoke(_playerHealHpAmount);
             return;
         }
-
     }
 
-    private void Die()
+    protected override void Die()
     {
         SceneManager.Instance.RemoveEnemie(this);
         isDead = true;
         AnimatorController.SetTrigger("Die");
     }
-
 }
+

@@ -2301,10 +2301,10 @@ GameObject:
   m_Component:
   - component: {fileID: 664052003916300769}
   - component: {fileID: 7475179364339281051}
-  - component: {fileID: 7515433519007700501}
+  - component: {fileID: 2048606599197516650}
   - component: {fileID: 8767279960998370427}
   m_Layer: 0
-  m_Name: Goblin
+  m_Name: SplitingGoblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2320,7 +2320,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.23, y: 0, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4669645415026157305}
@@ -2358,7 +2358,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7515433519007700501
+--- !u!114 &2048606599197516650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2367,16 +2367,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4570157599844447218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 569ff73fa4baa844ab71d3f6f52317fb, type: 3}
+  m_Script: {fileID: 11500000, guid: e323a8c26e4ce55458ae2c2fe772449a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealHpAmount: 5
-  _hp: 4.5
-  _damage: 2
-  _attackSpeed: 2
+  _playerHealHpAmount: 7
+  _hp: 8
+  _damage: 5
+  _attackSpeed: 4
   _attackRange: 2
   AnimatorController: {fileID: 7475179364339281051}
   Agent: {fileID: 8767279960998370427}
+  _splitGoblinAmount: 2
+  _enemiePrefab: {fileID: 7515433519007700501, guid: 4c34fad82d8582f40a00c43d3128284a, type: 3}
+  _spawnEnemieRange: 1
 --- !u!195 &8767279960998370427
 NavMeshAgent:
   m_ObjectHideFlags: 0

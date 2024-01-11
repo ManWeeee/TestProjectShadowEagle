@@ -37,7 +37,7 @@ public class SceneManager : MonoBehaviour
     public void RemoveEnemie(Enemie enemie)
     {
         Enemies.Remove(enemie);
-        if(Enemies.Count == 0)
+        if(Enemies.Count == 0 && enemie.GetType() != typeof(SplittingEnemie))
         {
             SpawnWave();
         }
